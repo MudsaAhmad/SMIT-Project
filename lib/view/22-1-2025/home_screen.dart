@@ -1,6 +1,3 @@
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smit_project/Constants/constants.dart';
@@ -21,11 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
         GestureDetector(
           onTap: () async {
 
-           //  SharedPreferences sp = await SharedPreferences.getInstance();
-           // String getName = sp.getString('name').toString();
-           // print('get name ----$getName');
-           //  sp.clear();
-           //  print('name removed----');
+            SharedPreferences sp = await SharedPreferences.getInstance();
+           String getName = sp.getString('name').toString();
+           print('get name ----$getName');
+            sp.clear();
+            print('name removed----');
 
           },
             child: Icon(Icons.logout)),

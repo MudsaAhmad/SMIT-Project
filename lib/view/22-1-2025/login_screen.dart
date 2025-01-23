@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smit_project/view/22-1-2025/bottom_bar.dart';
+import 'package:smit_project/view/22-1-2025/hive_screen.dart';
 import '../../Constants/constants.dart';
 import '../21-1-2025/Bottom_bar.dart';
 import 'package:http/http.dart' as http;
@@ -71,8 +72,9 @@ class _LoginScreen2State extends State<LoginScreen2> {
               onTap: () async {
                // Navigator.push(context, MaterialPageRoute(builder: (context) => BottomBar2()));
 
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HiveScreen()));
                 print('tapped---------');
-             await loginAPIFunction(email: emailController.text, password: passwordController.text);
+           //  await loginAPIFunction(email: emailController.text, password: passwordController.text);
                 print('tapped 2---------');
 
 
