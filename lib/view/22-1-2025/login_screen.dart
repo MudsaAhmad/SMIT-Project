@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smit_project/view/22-1-2025/bottom_bar.dart';
 import 'package:smit_project/view/22-1-2025/hive_screen.dart';
+import 'package:smit_project/view/componants/button.dart';
 import '../../Constants/constants.dart';
 import '../21-1-2025/Bottom_bar.dart';
 import 'package:http/http.dart' as http;
@@ -68,6 +69,11 @@ class _LoginScreen2State extends State<LoginScreen2> {
             ),
 
             SizedBox(height: 50,),
+            Button(title: 'POPST', onTap: (){
+
+
+
+            }, isLoading: false, color: Colors.teal),
             GestureDetector(
               onTap: () async {
                // Navigator.push(context, MaterialPageRoute(builder: (context) => BottomBar2()));
@@ -105,18 +111,15 @@ class _LoginScreen2State extends State<LoginScreen2> {
   Future<void> loginAPIFunction ({
     required String email,
     required String password,
-
   }) async {
     try{
-      final url = Uri.parse(apiLoginUrl);
+      final url = Uri.parse('apiLoginUrl');
       print('url ------$url');
        final body = {
         'email': email,
         'password': password,
       };
-
       print('body ----- $body');
-
       final headers = {
         'Content-Type': 'application/json',
       };
@@ -128,16 +131,10 @@ class _LoginScreen2State extends State<LoginScreen2> {
       Navigator.push(context, MaterialPageRoute(builder: (context) =>BottomBar2()));
       if(response.statusCode == 200)
         {
-
-
-
-
-          print('yes status code 200 -----');
+          print('yes status code 200 -----${response.body.toString()}');
         }else{
         print('Not status code 200 -----');
-
       }
-
     }catch(e){
       print('error ----------$e');
     }

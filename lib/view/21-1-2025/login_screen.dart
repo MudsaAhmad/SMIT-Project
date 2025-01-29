@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
     required String password,
   }) async {
     try {
-      final url = Uri.parse(apiLoginUrl);
+      final url = Uri.parse('apiLoginUrl');
       final headers = {
         'Content-Type': 'application/json',
       };
