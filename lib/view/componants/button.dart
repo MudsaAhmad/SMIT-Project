@@ -6,6 +6,8 @@ class Button extends StatelessWidget {
   bool isLoading;
   final Color color;
   final String? imagePath;
+  double? width;
+  double? height;
 
   Button({
     super.key,
@@ -14,6 +16,8 @@ class Button extends StatelessWidget {
     required this.isLoading,
     required this.color,
     this.imagePath,
+    this.width,
+    this.height,
   });
 
   @override
@@ -21,8 +25,8 @@ class Button extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 55,
-        width: 330,
+        height: height ?? 55,
+        width: width ?? 330,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(16),

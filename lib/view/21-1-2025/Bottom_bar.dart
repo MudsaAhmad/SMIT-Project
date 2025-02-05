@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smit_project/view/21-1-2025/profile_screen.dart';
 import 'package:smit_project/view/21-1-2025/setting_screen.dart';
-import 'package:smit_project/view/home_screen2.dart';
+import 'package:smit_project/view/21-1-2025/home_screen2.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smit_project/view/21-1-2025/login_screen.dart';
 
-import '../models/user_model.dart';
+import '../../models/user_model.dart';
 
 class HomeScreen2 extends StatefulWidget {
   const HomeScreen2({super.key});

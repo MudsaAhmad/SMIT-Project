@@ -106,28 +106,20 @@ class _LoginScreenState extends State<PUTAPIScreen> {
               Button(
                 title: 'PUT API',
                 onTap: () async {
-
                   try{
-
                     setState(() {
                       loading = true;
                     });
-
                     // url
                     final url = Uri.parse(putAPIUrl);
                     print('url ------->$url');
-
                     // headers
-
                     String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ODlmY2I3YmI5ZjdlMzlkZmNiZjZmZiIsImlhdCI6MTczODI0NTczOX0.NL9LStizBNQ_58Cbp1_Fmipgaz8qJmge703BFiwCwfc";
-
                     final headers = {
                       "Content-Type": "application/json",
                       "Authorization": "Bearer $token"
                     };
-
                     print('headers ---------->$headers)');
-
                     // request body
                     final requestBody = {
                       "currentPassword": currentPasswordController.text,
@@ -135,13 +127,9 @@ class _LoginScreenState extends State<PUTAPIScreen> {
                       "confirmPassword": confirmPasswordController.text,
                     };
                     print('body ---------->$requestBody');
-
                     final response = await http.put(url,headers: headers,body: json.encode(requestBody));
-
                     if(response.statusCode == 200){
-
                       final getResponse = json.decode(response.body);
-
                       setState(() {
                         loading = false;
                       });
@@ -153,14 +141,12 @@ class _LoginScreenState extends State<PUTAPIScreen> {
                         loading = false;
                       });
                     }
-
                   }catch(error){
                     print('error------>$error');
                     setState(() {
                       loading = false;
                     });
                   }
-
                 },
                 isLoading: loading,
                 color: Colors.teal,

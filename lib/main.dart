@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:smit_project/view/29-1-2025/login_screen.dart';
-import 'package:smit_project/view/30-1-2025/get_api_screen.dart';
-import 'package:smit_project/view/badge_achieve_screen.dart';
+import 'package:smit_project/view/31-1-2025/hive_screen.dart';
 
-import 'view/21-1-2025/login_screen.dart';
+import 'package:smit_project/view/5-2-2025/cache_screen.dart';
+import 'package:smit_project/view/5-2-2025/hive_model.dart';
+
+
+
+final Uri _url = Uri.parse('https://flutter.dev');
+
 
 void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
   // Initialize Hive
   await Hive.initFlutter();
-  var box = await Hive.openBox('testBox');
+  //var box = await Hive.openBox('testBox');
+
+  Hive.registerAdapter(HiveModelAdapter());
+  await Hive.openBox<HiveModel>('hiveBox');
+
   runApp(MyApp());
 }
 
@@ -34,7 +45,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const GetApiScreen(),
+        home: const HiveDataScreen(),
       ),
     );
   }
