@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-
 part 'hive_data_model.g.dart';
 
 @HiveType(typeId: 0)
@@ -15,3 +14,4 @@ class HiveDataModel {
 
   HiveDataModel({required this.name, required this.price, required this.cents});
 }
+

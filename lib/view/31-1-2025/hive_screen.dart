@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:smit_project/view/componants/button.dart';
 import 'hive_data_model.dart';
@@ -16,84 +15,187 @@ class HiveDataScreen extends StatefulWidget {
 class _HiveDataScreenState extends State<HiveDataScreen> {
   final Box<HiveDataModel> hiveBox = Hive.box<HiveDataModel>('hiveBox');
 
+  // void _showDialog({HiveDataModel? data, int? index}) {
+  //   final TextEditingController nameController = TextEditingController(text: data?.name ?? "");
+  //   final TextEditingController priceController = TextEditingController(text: data?.price.toString() ?? "");
+  //   final TextEditingController centsController = TextEditingController(text: data?.cents.toString() ?? "");
+  //
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: Text(data == null ? 'Add Data' : 'Edit Data',
+  //           style: const TextStyle(
+  //               fontSize: 18,
+  //               fontWeight: FontWeight.w600,
+  //               color: Colors.black),
+  //         ),
+  //         content: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             TextField(
+  //               controller: nameController,
+  //               decoration: const InputDecoration(hintText: "Enter name"),
+  //             ),
+  //             TextField(
+  //               controller: priceController,
+  //               keyboardType: TextInputType.number,
+  //               decoration: const InputDecoration(hintText: "Enter price"),
+  //             ),
+  //             TextField(
+  //               controller: centsController,
+  //               keyboardType: TextInputType.number,
+  //               decoration: const InputDecoration(hintText: "Enter cents"),
+  //             ),
+  //           ],
+  //         ),
+  //         actions: [
+  //           Button(
+  //               height: 40.h,width: 100.w,
+  //               title: 'Cancel', onTap: () => Navigator.pop(context), isLoading: false, color: Colors.teal),
+  //
+  //           Button(
+  //             height: 40.h,
+  //               width: 100.w,
+  //               title: 'Save',
+  //               onTap: (){
+  //             if (nameController.text.isNotEmpty &&
+  //                 priceController.text.isNotEmpty &&
+  //                 centsController.text.isNotEmpty) {
+  //               final newData = HiveDataModel(
+  //                 name: nameController.text,
+  //                 price: int.tryParse(priceController.text) ?? 0,
+  //                 cents: int.tryParse(centsController.text) ?? 0,
+  //               );
+  //
+  //               if (data == null) {
+  //                 hiveBox.add(newData);
+  //               } else {
+  //                 hiveBox.putAt(index!, newData);
+  //               }
+  //
+  //               Navigator.pop(context);
+  //               setState(() {});
+  //             }
+  //           },
+  //               isLoading: false,
+  //               color: Colors.teal
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
+
   void _showDialog({HiveDataModel? data, int? index}) {
-    final TextEditingController nameController = TextEditingController(text: data?.name ?? "");
-    final TextEditingController priceController = TextEditingController(text: data?.price.toString() ?? "");
-    final TextEditingController centsController = TextEditingController(text: data?.cents.toString() ?? "");
+    TextEditingController nameController =
+        TextEditingController(text: data?.name ?? "");
+    TextEditingController priceController =
+        TextEditingController(text: data?.price.toString() ?? "");
+    TextEditingController centsController =
+        TextEditingController(text: data?.cents.toString() ?? "");
 
     showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(data == null ? 'Add Data' : 'Edit Data',
-            style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.black),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: const InputDecoration(hintText: "Enter name"),
-              ),
-              TextField(
-                controller: priceController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: "Enter price"),
-              ),
-              TextField(
-                controller: centsController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: "Enter cents"),
-              ),
-            ],
-          ),
-          actions: [
-            Button(
-                height: 40.h,width: 100.w,
-                title: 'Cancel', onTap: () => Navigator.pop(context), isLoading: false, color: Colors.teal),
-
-            Button(
-              height: 40.h,
-                width: 100.w,
-                title: 'Save',
-                onTap: (){
-              if (nameController.text.isNotEmpty &&
-                  priceController.text.isNotEmpty &&
-                  centsController.text.isNotEmpty) {
-                final newData = HiveDataModel(
-                  name: nameController.text,
-                  price: int.tryParse(priceController.text) ?? 0,
-                  cents: int.tryParse(centsController.text) ?? 0,
-                );
-
-                if (data == null) {
-                  hiveBox.add(newData);
-                } else {
-                  hiveBox.putAt(index!, newData);
-                }
-
-                Navigator.pop(context);
-                setState(() {});
-              }
-            },
-                isLoading: false,
-                color: Colors.teal
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              'Add  New Expense',
+              style: GoogleFonts.poppins(
+                  fontSize: 16.sp, fontWeight: FontWeight.w600),
             ),
-          ],
-        );
-      },
-    );
-  }
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: nameController,
+                  keyboardType: TextInputType.text,
+                  decoration:
+                      const InputDecoration(hintText: 'Enter your name'),
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 80.w,
+                      child: TextField(
+                        controller: priceController,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(hintText: '\$'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    SizedBox(
+                      width: 80.w,
+                      child: TextField(
+                        controller: centsController,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(hintText: 'Cents'),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            actions: [
+              Row(
+                children: [
+                  Button(
+                      width: 100.w,
+                      title: 'Cancel',
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      isLoading: false,
+                      color: Colors.teal),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Button(
+                      width: 100.w,
+                      title: 'Save',
+                      onTap: () {
+                        if (nameController.text.isNotEmpty &&
+                            priceController.text.isNotEmpty &&
+                            centsController.text.isNotEmpty) {
+                          final getData = HiveDataModel(
+                            name: nameController.text,
+                            price: int.parse(priceController.text),
+                            cents: int.parse(centsController.text),
+                          );
+                          print(
+                              'get data from controllers ------> ${getData.name}');
 
+                          if (data == null) {
+                            hiveBox.add(getData);
+
+                            print(' add data function called ------->');
+
+                          } else {
+                            hiveBox.putAt(index!, getData);
+                            print(' update/put data function called ------->');
+
+                          }
+                          Navigator.pop(context);
+                          setState(() {});
+                        }
+                      },
+                      isLoading: false,
+                      color: Colors.teal)
+                ],
+              )
+            ],
+          );
+        });
+  }
 
   void _deleteItem(int index) {
     hiveBox.deleteAt(index);
     setState(() {});
   }
 
+  // total cost
   double _calculateTotalCost() {
     double total = 0.0;
     for (var i = 0; i < hiveBox.length; i++) {
@@ -102,7 +204,6 @@ class _HiveDataScreenState extends State<HiveDataScreen> {
     }
     return total;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +229,9 @@ class _HiveDataScreenState extends State<HiveDataScreen> {
                 child: Text(
                   "Total Cost: \$${_calculateTotalCost().toStringAsFixed(2)}",
                   style: GoogleFonts.poppins(
-                    fontSize: 18.sp, fontWeight: FontWeight.bold, color: Colors.teal,
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal,
                   ),
                 ),
               ),
@@ -136,17 +239,25 @@ class _HiveDataScreenState extends State<HiveDataScreen> {
                 child: ListView.builder(
                   itemCount: box.length,
                   itemBuilder: (context, index) {
+                    print('length ------> ${box.length}');
+
                     HiveDataModel data = box.getAt(index)!;
                     return ListTile(
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(data.name,style: GoogleFonts.poppins(
-                            fontSize: 16.sp,fontWeight: FontWeight.w600,
-                          ),),
-                          Text("\$${data.price}.${data.cents.toString().padLeft(2, '0')}",
+                          Text(
+                            data.name,
+                            style: GoogleFonts.poppins(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            "\$${data.price}.${data.cents.toString().padLeft(2, '0')}",
                             style: GoogleFonts.lato(
-                              fontSize: 14.sp,fontWeight: FontWeight.w400,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -155,9 +266,13 @@ class _HiveDataScreenState extends State<HiveDataScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.blue),
-                            onPressed: () => _showDialog(data: data, index: index),
-                          ),
+                              icon: const Icon(Icons.edit, color: Colors.blue),
+                              onPressed: () {
+                                _showDialog(
+                                  data: data,
+                                  index: index,
+                                );
+                              }),
                           IconButton(
                             icon: const Icon(Icons.delete, color: Colors.red),
                             onPressed: () => _deleteItem(index),
@@ -174,8 +289,13 @@ class _HiveDataScreenState extends State<HiveDataScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.teal,
-        onPressed: () => _showDialog(),
-        child: const Icon(Icons.add,color: Colors.white,),
+        onPressed: () {
+          _showDialog();
+        },
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
